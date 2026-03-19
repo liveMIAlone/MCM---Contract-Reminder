@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/Home.css">
+    <style>
+    </style>
+</head>
+<body>
+
+<!-- Header section -->
+<header class="header">
+    <div class="logo">
+        <!-- Logo image -->
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Emilio_Aguinaldo_College_seal.svg/100px-Emilio_Aguinaldo_College_seal.svg.png" alt="EAC Logo">
+        <!-- Website name or logo -->
+        <div class="address">
+            <h1>Emilio Aguinaldo College</h1>
+            <h3>MANILA CAMPUS, 1113-1117 SAN MARCELINO ST, PACO, MANILA</h3>
+        </div>
+    </div>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/Home" id="home-link">Home</a></li>
+            <li><a href="/Upload" id="upload-link">Upload</a></li>
+            <li><a href="/Profile" id="profile-link">Profile</a></li>
+            <li><a href="/login" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Display uploaded files -->
+<h2>My Uploads</h2>
+<div class="uploaded-files">
+    <div th:each="upload : ${uploads}" class="uploaded-file">
+        <div class="file-box">
+            <div class="file-details">
+                <div class="file-detail">
+                    <span class="detail-label">Title:</span>
+                    <span class="detail-value" th:text="${upload.title}"></span>
+                </div>
+                <div class="file-detail">
+                    <span class="detail-label">Description:</span>
+                    <span class="detail-value" th:text="${upload.description}"></span>
+                </div>
+                <div class="file-detail">
+                    <span class="detail-label">Project Type:</span>
+                    <span class="detail-value" th:text="${upload.projectType}"></span>
+                </div>
+                <div class="file-detail">
+                    <span class="detail-label">File:</span>
+                    <img th:if="${upload.filePath.endsWith('.jpg') or upload.filePath.endsWith('.jpeg') or upload.filePath.endsWith('.png')}" th:src="@{${upload.filePath}}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+                    <video th:if="${upload.filePath.endsWith('.mp4')}" th:src="@{${upload.filePath}}" controls style="max-width: 100%; height: auto;">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- Provide a download link for other file types -->
+                    <a th:unless="${upload.filePath.endsWith('.jpg') or upload.filePath.endsWith('.jpeg') or upload.filePath.endsWith('.png') or upload.filePath.endsWith('.mp4')}" th:href="@{/downloadFile(filePath=${upload.filePath})}" download>Download File</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- JavaScript for logout and navigation -->
+<script>
+    document.getElementById("logout").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        // Perform logout actions here (e.g., clearing session data, redirecting user)
+        window.location.href = "/login"; // Redirect the user to the login page
+    });
+
+    document.getElementById("home-link").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        window.location.href = "/Home"; // Redirect the user to the home page
+    });
+</script>
+
+</body>
+</html>

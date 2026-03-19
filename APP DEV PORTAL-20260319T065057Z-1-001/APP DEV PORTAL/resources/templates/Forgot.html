@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Registration.css}">
+    
+</head>
+<body>
+
+    <!-- Header with Image -->
+    <header>
+    <div class="logo-address">
+    <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Emilio_Aguinaldo_College_seal.svg/130px-Emilio_Aguinaldo_College_seal.svg.png" alt="EAC College Store Logo" class="logo">
+    </div>
+    <div class="address">
+        <h1>Emilio Aguinaldo College</h1>
+        <h3>MANILA CAMPUS, 1113-1117 SAN MARCELINO ST, PACO, MANILA</h3>
+    </div>
+	</div>
+	</header>
+    
+    
+    <!-- Role Selection -->
+    <div class="registration-container">
+    <h1>Forgot Password</h1>
+    <form id="Registration" action="/user/save" method="post">
+        <input type="hidden" name="role" id="selectedRole" value="STUDENT"> <!-- Default value is student -->
+
+     
+            <!-- Form fields for both roles -->
+            <div class="form-group" id="commonFields">
+                <label for="email">EAC Email:</label>
+                <input type="email" id="email" name="email" required>
+			</div>
+				<div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+           	</div>
+				<div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+             </div>
+				<div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+              </div>
+				<div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            
+            <!-- Form fields specific to Admin role -->
+            <div class="form-group" id="adminFields" style="display: none;">
+                <!-- Add any additional fields for admin here -->
+            </div>
+
+            <!-- Form fields specific to Student role -->
+            <div class="form-group" id="studentFields" style="display: none;"><!-- Add any additional fields for student here -->
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+          	<button type="button" class="btn btn-cancel" onclick="cancelForm()">Cancel</button> 
+            
+            
+        </form>
+    </div>
+
+    <!-- Display messages -->
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+<script>
+function setRole(role) {
+    document.getElementById('selectedRole').value = role;
+    
+    if (role === 'ADMIN') {
+        document.querySelector('.adminForm').style.display = 'block';
+        document.querySelector('.studentForm').style.display = 'none';
+    } else {
+        document.querySelector('.adminForm').style.display = 'none';
+        document.querySelector('.studentForm').style.display = 'block';
+    }
+}
+</script>
+<script type="text/javascript">
+	function cancelForm() {
+    window.location.href = "/login";
+}
+</script>
+</body>
+</html>

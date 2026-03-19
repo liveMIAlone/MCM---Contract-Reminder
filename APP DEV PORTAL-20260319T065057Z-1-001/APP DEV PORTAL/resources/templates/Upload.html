@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/Upload.css">
+    <style>
+    </style>
+</head>
+<body>
+
+<!-- Header section -->
+<header class="header">
+    <div class="logo">
+        <!-- Logo image -->
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Emilio_Aguinaldo_College_seal.svg/100px-Emilio_Aguinaldo_College_seal.svg.png" alt="EAC Logo">
+        <!-- Website name or logo -->
+        <div class="address">
+            <h1>Emilio Aguinaldo College</h1>
+            <h3>MANILA CAMPUS, 1113-1117 SAN MARCELINO ST, PACO, MANILA</h3>
+        </div>
+    </div>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="/Home" id="Home-link">Home</a></li>
+            <li><a href="/Upload" id="Upload-link">Upload</a></li>
+            <li><a href="/Profile" id="profile-link">Profile</a></li>
+            <li><a href="/login" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <!-- Display success message -->
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+   
+    <!-- Display error message -->
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+    
+    <h2>Submit Your Project</h2>
+    <form action="/Upload" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+       
+        <label for="title">Project Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="projectType">Project Type:</label>
+        <select id="projectType" name="projectType" required>
+        	<option value="">Select</option>
+            <option value="capstone">File</option>
+            <option value="activity">Activity</option>
+            <option value="assignment">Assignment</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <!-- File input field -->
+        <label for="fileInput">Upload File (PPT, PDF, etc.):</label>
+        <input type="file" id="fileInput" name="fileInput" accept=".jpg, .jpeg, .png, .pdf, .ppt, .pptx, .doc, .docx, .xls, .xlsx, .mp4, .avi" onchange="previewImage(event)">
+
+        <!-- Image preview -->
+        <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; height: auto; margin-top: 10px;">
+        
+        <button type="submit">Submit</button>
+        <button type="button" onclick="cancelForm()">Cancel</button>
+    </form>
+</div>
+
+<!-- Display uploaded files -->
+<h2>My Uploads</h2>
+<div class="uploaded-files">
+    <div th:each="upload : ${uploads}" class="uploaded-file">
+        <div class="file-details">
+            <div class="file-detail">
+                <span class="detail-label">Title:</span>
+                <span class="detail-value" th:text="${upload.title}"></span>
+            </div>
+            <div class="file-detail">
+                <span class="detail-label">Description:</span>
+                <span class="detail-value" th:text="${upload.description}"></span>
+            </div>
+            <div class="file-detail">
+                <span class="detail-label">Project Type:</span>
+                <span class="detail-value" th:text="${upload.projectType}"></span>
+            </div>
+            <div class="file-detail">
+                <span class="detail-label">File:</span>
+                <!-- Check if the file is an image -->
+                <img th:if="${upload.filePath.toLowerCase().endsWith('.jpg') or upload.filePath.toLowerCase().endsWith('.jpeg') or upload.filePath.toLowerCase().endsWith('.png')}" th:src="@{${upload.filePath}}" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;">
+                <!-- Check if the file is a video -->
+                <video th:if="${upload.filePath.toLowerCase().endsWith('.mp4')}" th:src="@{${upload.filePath}}" controls style="max-width: 200px; max-height: 200px;">
+                    Your browser does not support the video tag.
+                </video>
+                <!-- Provide a download link for other file types -->
+                <a th:unless="${upload.filePath.toLowerCase().endsWith('.jpg') or upload.filePath.toLowerCase().endsWith('.jpeg') or upload.filePath.toLowerCase().endsWith('.png') or upload.filePath.toLowerCase().endsWith('.mp4')}" th:href="@{/downloadFile(filePath=${upload.filePath})}" download>Download File</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.getElementById("logout").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        // Perform logout actions here (e.g., clearing session data, redirecting user)
+        window.location.href = "/login"; // Redirect the user to the login page
+    });
+
+    document.getElementById("home-link").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        window.location.href = "/Home"; // Redirect the user to the home page
+    });
+
+    function cancelForm() {
+        // Implement cancel form logic here (if needed)
+        console.log('Form canceled');
+    }
+
+    function validateForm() {
+        var title = document.getElementById('title').value.trim();
+        var description = document.getElementById('description').value.trim();
+        var projectType = document.getElementById('projectType').value.trim();
+        var fileInput = document.getElementById('fileInput').value.trim();
+
+        if (title === '' || description === '' || projectType === '' || fileInput === '') {
+            alert('Please fill out all fields');
+            return false;
+        }
+
+        // Add additional validation logic if needed
+
+        console.log('Form submitted');
+        return true;
+    }
+
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function(){
+            var img = document.getElementById('imagePreview');
+            img.style.display = 'block';
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>
+</body>
+</html>

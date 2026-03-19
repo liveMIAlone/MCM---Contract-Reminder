@@ -1,0 +1,194 @@
+/* Header styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #8b0000; /* Maroon */
+    color: white;
+    padding: 20px;
+    font-family: Georgia, serif;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo image styling */
+.logo img {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Navigation bar styling */
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin-left: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif; /* Revert to original font */
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px; /* Increased max-width for better layout */
+    margin: 20px auto; /* Added margin for spacing */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for container */
+    background-color: #f8f9fa; /* Light gray background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333; /* Dark text color */
+}
+
+input[type="text"],
+textarea,
+select {
+    margin-bottom: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333; /* Dark text color */
+}
+
+select {
+    width: 100%;
+}
+/* Button styling */
+button[type="submit"] {
+    padding: 12px 24px; /* Increased padding for button */
+    background-color: #b30000; /* Darker shade of maroon */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Increased border radius */
+    cursor: pointer;
+    font-size: 18px; /* Increased font size for button */
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #ff3333; /* Lighter shade of maroon on hover */
+}
+
+/* File input field styling */
+input[type="file"] {
+    padding: 10px; /* Increased padding for file input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333; /* Dark text color */
+    background-color: #f8f9fa; /* Light gray background */
+    transition: border-color 0.3s ease;
+}
+
+input[type="file"]:focus {
+    border-color: #007bff; /* Blue border color on focus */
+    outline: none;
+}
+
+input[type="file"]::placeholder {
+    color: #666; /* Placeholder text color */
+}
+
+/* Cancel button styling */
+button[type="button"] {
+    padding: 12px 24px; /* Same padding as the submit button */
+    background-color: #b30000; /* Same color as the save button */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Same border radius as the save button */
+    cursor: pointer;
+    font-size: 18px; /* Same font size as the save button */
+    margin-top: 20px; /* Same margin-top as the save button */
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover {
+    background-color: #ff3333; /* Same hover color as the save button */
+}
+
+.uploaded-file {
+    width: 350px; /* Set the width of each box */
+    height: 350px; /* Set the height of each box */
+    margin-right: 20px; /* Add margin between each box */
+    margin-bottom: 20px; /* Add margin at the bottom of each box */
+    display: inline-block; /* Align boxes horizontally */
+    background-color: #f9f9f9; /* Add background color to improve readability */
+    border: 1px solid #ccc; /* Add border for visual separation */
+    border-radius: 15px; /* Add border radius for rounded corners */
+    padding: 20px; /* Add padding for content */
+    box-sizing: border-box; /* Include padding and border in the box's total size */
+}
+
+.file-details {
+    height: 100%; /* Make the file details div occupy full height */
+}
+
+.detail-label {
+    font-weight: bold;
+    font-size: 14px; /* Reduce font size slightly */
+}
+
+.detail-value {
+    margin-left: 10px;
+    font-size: 14px; /* Reduce font size slightly */
+}
+
+
+/* Style for file details */
+.file-details {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for each file detail */
+.file-detail {
+    margin-bottom: 5px; /* Add space between each detail */
+}
+
+/* Style for detail label */
+.detail-label {
+    font-weight: bold; /* Make the label bold */
+}
+
+/* Style for file link */
+.file-link {
+    color: blue; /* Change link color to blue */
+    text-decoration: none; /* Remove underline from link */
+}
+
+/* Style for file link on hover */
+.file-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

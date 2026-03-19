@@ -1,0 +1,162 @@
+/* General Styles */
+body {
+    font-family: Georgia, serif; /* Change font family to Georgia or serif */
+    background-color: #fff; /* White background */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: Georgia, serif; /* Change font to Georgia or serif */
+    font-size: 36px; /* Set font size to 36 pixels */
+}
+
+h3 {
+    font-family: Georgia, serif; /* Change font to Georgia or serif */
+}
+
+.logo-address {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .logo-address {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+    
+    .logo {
+        margin-bottom: 10px; /* Add some space below the logo on smaller screens */
+        margin-right: 0; /* Remove right margin on smaller screens */
+    }
+}
+
+/* Header Styles */
+header {
+    background-color: #8b0000; /* Maroon */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    height: 16%;
+    width: 100%;
+}
+
+.header-content {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.header-content p {
+    font-size: 15px;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* Form container styling */
+.registration-container {
+    background-color: #8b0000; /* Maroon */
+    padding: 40px;
+    border-radius: 8px;
+    width: 500px;
+    margin: 50px auto 20px auto; /* Updated margin for top, right, bottom, left */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow */
+}
+
+.registration-container h1 {
+    color: #fff; /* White color for headings */
+    font-size: 36px; /* Set font size */
+    margin-bottom: 20px; /* Add margin below the heading */
+}
+
+.registration-container label {
+    color: #fff; /* White color for labels */
+    font-size: 16px; /* Adjust font size */
+    font-weight: normal; /* Reset font weight */
+}
+
+/* Input field styling */
+.registration-container input[type="text"],
+.registration-container input[type="email"],
+.registration-container input[type="password"],
+.registration-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: block;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: Georgia, serif; /* Change font family */
+    font-size: 16px;
+    background-color: #fff; /* White background */
+    color: #333; /* Dark text color */
+}
+
+/* Button Styles */
+.registration-container .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.registration-container .btn {
+    background-color: #b30000; /* Lighter shade of red */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    font-family: Georgia, serif; /* Change font family */
+    font-size: 18px;
+}
+
+.registration-container .btn:hover {
+    background-color: #800000; /* Maroon */
+}
+/* Cancel button styles */
+.registration-container .btn-cancel {
+    background-color:  #b30000; /* Maroon */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+    font-family: Georgia, serif; /* Change font family */
+    font-size: 18px;
+}
+
+.registration-container .btn-cancel:hover {
+    background-color: #800000; /* Lighter shade of red */
+}
+
+/* Alert Styles */
+.alert {
+    margin-top: 20px;
+    color: #333; /* Dark text color */
+    font-size: 16px; /* Adjust font size */
+}
+
+.alert-success {
+    background-color: #28a745; /* Green */
+    border-color: #28a745;
+    color: #fff; /* White */
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px; /* Adjust font size */
+}
+
